@@ -15,20 +15,37 @@
 
 4. Cấu trúc lưu trữ Index
    - Thường được triển khai dưới dạng cây B+ (B+ tree) có sắp xếp. Giúp thực hiện các phép toán sắp xếp và tìm kiếm trong khoảng hiệu quả (O(log n)).
-  
+   ![image](https://github.com/user-attachments/assets/f25d2739-0fbd-4a3b-a77f-0abbc4d6daa8)
+
+   - Ví dụ trong MongoDB:
      
     ![image](https://github.com/user-attachments/assets/8c3e355a-a720-4a94-9470-5d3ee3fa49c4)
 
 5. Các loại index
    - Trên 1 trường (Single Field)
      Mặc định thì MongoDB đánh index cho cột `_id`
+     
      ![image](https://github.com/user-attachments/assets/08f1ab05-d086-4f92-a987-324285ebd6cf)
      
    - Trên nhiều trường (Compound Index)
+     
      ![image](https://github.com/user-attachments/assets/ea55b8d8-87e6-4d67-b1dc-f97d41c0def5)
 
    - Chỉ mục dùng cho các mảng (Multikey Index)
+     
      ![image](https://github.com/user-attachments/assets/dcfffc9b-9b0a-4ec2-9394-22d4cb4a0b5c)
+
+   - Chỉ Mục Hồi Quy (Wildcard Index)
+     + Chỉ mục bao phủ tất cả các trường trong tài liệu.
+     + cmd: `db.collection.createIndex({ "$**": 1 })`
+
+   - Chỉ Mục TTL (Time-To-Live Index)
+     + Tự động xóa các tài liệu sau một khoảng thời gian nhất định.
+     + cmd: `db.collection.createIndex({ fieldName: 1 }, { expireAfterSeconds: 3600 })`
+    
+   - Chỉ Mục Tìm Text (Text Index)
+     + Chỉ mục cho phép tìm kiếm văn bản đầy đủ trong trường văn bản.
+     + cmd: `db.collection.createIndex({ fieldName: "text" })`
 
 
 
